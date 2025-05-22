@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Investment Form</title>
+  <link rel="stylesheet" href="./CSS/bootstrap.min.css" />
+  <link rel="stylesheet" href="./CSS/style.css" type="text/css" />
+
+</head>
+
+<body>
+  <header>
+     <nav class="navbar navbar-expand-lg bg-white navbar-light fixed-top px-4 mb-5 ">
+    <div class="container">
+    
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="//assets-netstorage.groww.in/web-assets/billion_groww_desktop/prod/_next/static/media/groww_logo.961dcfc1.webp " alt="Groww" height="30" class="me-2">
+    </a>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 ms-4">
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-muted" href="#">Stocks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-muted" href="#">F&O</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-muted" href="#">Mutual Funds</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-muted border-start ps-3 ms-2" href="#">More</a>
+        </li>
+      </ul>
+
+      
+      <form class="d-flex align-items-center me-3" role="search" style="max-width: 320px; width: 100%;">
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">
+            <i class="bi bi-search"></i>
+          </span>
+          <input class="form-control border-start-0" type="search" placeholder="Search Groww..." aria-label="Search">
+          <span class="input-group-text bg-white text-muted  border-end">
+            Ctrl K
+          </span>
+        </div>
+      </form>
+
+      
+      <button class="btn fw-bold text-white px-3" style="background-color:#00b386 ;">Login/Sign up</button>
+    </div>
+  </div>
+</nav>
+
+  </header>
+  <main>
+      <div class="container py-4">
+    <div class="my-5">
+      <h2 class="text-dark fw-bold ">SIP Calculator</h2>
+    </div>
+
+    <!-- Main Card -->
+    <div class="row p-4" >
+      <!-- LEFT SIDE: Form -->
+      <div class="col-lg-4" >
+        <div class="d-flex mb-4 ">
+          <button class="heading-btn tab-active text-success fw-bold me-4">SIP</button>
+          <button class="heading-btn bg-transparent fw-bold text-muted">Lumpsum</button>
+        </div>
+
+        <form>
+          <!-- Monthly Investment -->
+          <div class="mb-3">
+            <div class="d-flex align-items-center justify-content-between">
+              <label for="investment" class="fs-4">Monthly Investment</label>
+              <span class="display-box">₹ <span id="monthlyDisplay">25000</span></span>
+
+            </div>
+            <input type="range" id="invest_Range" min="500" max="1000000" step="500" class="form-range mt-4"
+              onchange="handleChange()" />
+          </div>
+
+          <!-- Expected Return -->
+          <div class="mb-4">
+            <div class="d-flex align-items-center justify-content-between">
+              <label for="rate" class="fs-4">Expected return rate (p.a)</label>
+              <span class="display-box"><span id="rateDisplay">12</span>%</span>
+            </div>
+            <input type="range" id="rate_Range" min="1" max="30" step="0.1" class="form-range mt-4 "
+              onchange="handleChange()" />
+          </div>
+
+          <!-- Time Period -->
+          <div class="mb-3">
+            <div class="d-flex align-items-center justify-content-between">
+              <label for="time" class="fs-4">Time period</label>
+              <span class="display-box"><span id="yearsDisplay">10</span>Yr</span>
+            </div>
+            <input type="range" id="time_Range" min="1" max="40" step="1" class="form-range mt-4"
+              onchange="handleChange()" />
+          </div>
+
+          <!-- Results -->
+          <div class="mb-3 ">
+            <div class="d-flex justify-content-between my-2">
+              <div class="result-label">Invested Amount</div>
+              <div class="result-value" id="invest_Amount">₹ 0</div>
+            </div>
+            <div class="d-flex justify-content-between my-2">
+              <div class="result-label">Est. Returns</div>
+              <div class="result-value" id="est_Return">₹ 0</div>
+            </div>
+            <div class="d-flex justify-content-between my-2">
+              <div class="result-label">Total Value</div>
+              <div class="result-value" id="total_Interest">₹ 0</div>
+            </div>
+          </div>
+
+          <div class="text-end">
+            <button type="button" class="invest-button">INVEST NOW</button>
+          </div>
+
+
+        </form>
+      </div>
+      <div class="col-lg-4 d-flex gy-5">
+        <div>
+          <div class="sip-legend d-flex ">
+            <div><span class="square invested-square"></span>Invested amount</div>
+            <div class="mx-4"><span class="square return-square"></span>Est. returns</div>
+          </div>
+          <div class="my-5 mx-3">
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- RIGHT SIDE: Info and Cards -->
+      <div class="col-lg-4">
+        <div class="">
+          <div class="info-card text-center ">
+            <img src="https://cms-resources.groww.in/uploads/Start_Investing_2_2286453507.png">
+            <h4 class="mt-2 mb-2">Build Wealth, One SIP at a Time</h4>
+            <p>
+              Start a SIP and harness the power of compounding through consistent, long-term investing.
+            </p>
+            <a href="https://groww.in/calculators/sip-calculator"><button class="btn w-100 mb-3 text-white fw-bold"
+                style="background-color:#00b386;">SIP WITH ₹500</button></a>
+          </div>
+        </div>
+
+        <!-- Popular Calculators Card -->
+        <div class="popular-card mt-4">
+          <div class="card-header bg-light fw-bold">Popular Calculators</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Lumpsum Calculator</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">SWP Calculator</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Mutual Fund Returns
+                Calculator</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Sukanya Samriddhi Yojana
+                Calculator</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Income Tax Calculator</a>
+            </li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">PPF Calculator</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">EPF Calculator</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">FD Calculator</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">RD Calculator</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">EMI Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./JS/bootstrap.bundle.min.js"></script>
+  <script src="./JS/script.js" type="text/javascript"></script>
+</body>
+
+</html>
